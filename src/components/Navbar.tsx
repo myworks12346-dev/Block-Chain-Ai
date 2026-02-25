@@ -15,7 +15,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onConnect, isConnecting, walletA
 
   const navLinks = [
     { name: 'Features', path: '/features' },
-    { name: 'Pricing', path: '/pricing' },
     { name: 'Security', path: '/security' },
     { name: 'About', path: '/about' },
     { name: 'Dashboard', path: '/dashboard' },

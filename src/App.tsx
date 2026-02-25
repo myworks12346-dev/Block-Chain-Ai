@@ -5,7 +5,6 @@ import { Footer } from './components/Footer';
 import { LandingPage } from './pages/LandingPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { FeaturesPage } from './pages/FeaturesPage';
-import { PricingPage } from './pages/PricingPage';
 import { AboutPage } from './pages/AboutPage';
 import { SecurityPage } from './pages/SecurityPage';
 import { ContactPage } from './pages/ContactPage';
@@ -149,7 +148,6 @@ export default function App() {
             <Routes>
               <Route path="/" element={<LandingPage onConnect={handleConnect} isConnecting={isConnecting} />} />
               <Route path="/features" element={<FeaturesPage />} />
-              <Route path="/pricing" element={<PricingPage />} />
               <Route path="/security" element={<SecurityPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
