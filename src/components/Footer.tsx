@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
               <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-blue-600 rounded-lg flex items-center justify-center">
                 <Shield className="text-white w-5 h-5" />
               </div>
-              <span className="text-lg font-bold tracking-tight text-white">MOI Insight</span>
+              <span className="text-lg font-bold tracking-tight text-white">Context Wallet</span>
             </Link>
             <p className="text-gray-500 text-sm leading-relaxed">
               Empowering Web3 users with AI-driven transaction intelligence and wallet security insights.
@@ -59,7 +59,7 @@ export const Footer: React.FC = () => {
 
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-600 text-xs">
-            &copy; 2026 MOI Insight. All rights reserved.
+            &copy; 2026 Context Wallet. All rights reserved.
           </p>
           <div className="flex gap-6 text-xs text-gray-600">
             <span>Built with Gemini AI</span>

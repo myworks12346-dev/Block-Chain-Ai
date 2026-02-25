@@ -23,7 +23,7 @@ export const CTASection: React.FC<CTASectionProps> = ({ onConnect }) => {
             Start Understanding Your <br /> Wallet Today
           </h2>
           <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
-            Join thousands of users who trust MOI Insight to provide clarity and security for their blockchain journey.
+            Join thousands of users who trust Context Wallet to provide clarity and security for their blockchain journey.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">

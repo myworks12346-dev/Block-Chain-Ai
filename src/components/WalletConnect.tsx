@@ -24,7 +24,7 @@ export const WalletConnect: React.FC<WalletConnectProps> = ({ onConnect, isConne
         transition={{ delay: 0.1 }}
         className="text-gray-400 text-lg mb-10 max-w-2xl"
       >
-        MOI Insight uses advanced AI to decode complex blockchain data, 
+        Context Wallet uses advanced AI to decode complex blockchain data, 
         providing you with clarity and security for every move you make.
       </motion.p>
 

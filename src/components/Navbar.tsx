@@ -28,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onConnect, isConnecting, walletA
             <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-600 rounded-xl flex items-center justify-center neon-glow group-hover:scale-110 transition-transform">
               <Shield className="text-white w-6 h-6" />
             </div>
-            <span className="text-xl font-bold tracking-tight text-white">MOI Insight</span>
+            <span className="text-xl font-bold tracking-tight text-white">Context Wallet</span>
           </Link>
 
           {/* Desktop Nav */}

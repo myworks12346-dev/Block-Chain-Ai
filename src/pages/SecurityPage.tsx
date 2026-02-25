@@ -27,7 +27,7 @@ export const SecurityPage: React.FC = () => {
     {
       icon: AlertCircle,
       title: 'No Custody of Funds',
-      description: 'MOI Insight is a non-custodial tool. We cannot move your funds or execute transactions on your behalf.'
+      description: 'Context Wallet is a non-custodial tool. We cannot move your funds or execute transactions on your behalf.'
     }
   ];
 
@@ -37,7 +37,7 @@ export const SecurityPage: React.FC = () => {
         <div className="text-center mb-24">
           <h1 className="text-5xl md:text-7xl font-bold mb-8">Security First</h1>
           <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-            Your safety is our top priority. We\'ve built MOI Insight with a security-first architecture that protects your assets and privacy.
+            Your safety is our top priority. We\'ve built Context Wallet with a security-first architecture that protects your assets and privacy.
           </p>
         </div>
 

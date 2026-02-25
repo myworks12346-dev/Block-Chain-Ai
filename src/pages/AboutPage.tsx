@@ -24,7 +24,7 @@ export const AboutPage: React.FC = () => {
               Blockchain technology is revolutionary, but it's often opaque and intimidating. Complex transactions and hidden risks prevent many from fully participating in the Web3 ecosystem.
             </p>
             <p className="text-gray-400 text-lg leading-relaxed">
-              MOI Insight was born from the need for a "human layer" on top of the blockchain. By combining advanced AI with real-time data analysis, we provide the clarity and confidence users need to navigate this new frontier.
+              Context Wallet was born from the need for a "human layer" on top of the blockchain. By combining advanced AI with real-time data analysis, we provide the clarity and confidence users need to navigate this new frontier.
             </p>
           </motion.div>
           <div className="grid grid-cols-2 gap-6">

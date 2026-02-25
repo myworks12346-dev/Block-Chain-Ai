@@ -57,7 +57,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onConnect, isConnectin
           <div className="text-center mb-20">
             <h2 className="text-4xl font-bold mb-4">Powerful Intelligence for Web3</h2>
             <p className="text-gray-500 max-w-2xl mx-auto">
-              MOI Insight provides the tools you need to navigate the blockchain with confidence and security.
+              Context Wallet provides the tools you need to navigate the blockchain with confidence and security.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -74,7 +74,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onConnect, isConnectin
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>
               <h2 className="text-5xl font-bold mb-12 leading-tight">
-                How MOI Insight <br /> 
+                How Context Wallet <br /> 
                 <span className="bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">Protects You.</span>
               </h2>
               <div className="space-y-12">

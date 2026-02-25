@@ -43,7 +43,7 @@ export const Hero: React.FC<HeroProps> = ({ onConnect, isConnecting }) => {
             transition={{ delay: 0.2 }}
             className="text-gray-400 text-xl mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            Stop guessing what's happening in your wallet. MOI Insight uses Gemini AI to decode complex transactions, detect risks, and provide actionable security insights in real-time.
+            Stop guessing what's happening in your wallet. Context Wallet uses Gemini AI to decode complex transactions, detect risks, and provide actionable security insights in real-time.
           </motion.p>
 
           <motion.div
