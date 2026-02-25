@@ -2,7 +2,18 @@ import { GoogleGenAI } from "@google/genai";
 import { Transaction, AIExplanation } from "../types";
 import { ethers } from "ethers";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "" });
+let aiInstance: GoogleGenAI | null = null;
+
+function getAI() {
+  if (!aiInstance) {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      throw new Error("GEMINI_API_KEY is not defined");
+    }
+    aiInstance = new GoogleGenAI({ apiKey });
+  }
+  return aiInstance;
+}
 
 export async function analyzeTransaction(tx: Transaction): Promise<AIExplanation> {
   const prompt = `
@@ -27,6 +38,7 @@ export async function analyzeTransaction(tx: Transaction): Promise<AIExplanation
   `;
 
   try {
+    const ai = getAI();
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
       contents: prompt,
