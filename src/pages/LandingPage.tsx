@@ -51,6 +51,37 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onConnect, isConnectin
     <div>
       <Hero onConnect={onConnect} isConnecting={isConnecting} />
 
+      {/* Developer Credit Section */}
+      <section className="py-12 border-y border-white/5 bg-black/40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col md:flex-row items-center justify-center gap-6 text-center md:text-left"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full flex items-center justify-center font-bold text-white shadow-lg shadow-purple-500/20">
+                MN
+              </div>
+              <div>
+                <p className="text-gray-400 text-sm uppercase tracking-widest font-medium">Developed by</p>
+                <h3 className="text-xl font-bold text-white">M. Naresh</h3>
+              </div>
+            </div>
+            <div className="h-px w-12 bg-white/10 hidden md:block"></div>
+            <a 
+              href="https://www.linkedin.com/in/naresh-kumar7?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-6 py-3 bg-[#0077B5]/10 border border-[#0077B5]/20 rounded-full text-[#0077B5] hover:bg-[#0077B5] hover:text-white transition-all font-bold text-sm"
+            >
+              Connect on LinkedIn
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="py-24 bg-black/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

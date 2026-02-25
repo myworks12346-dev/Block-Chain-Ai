@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { TransactionRecord } from '../types';
-import { Shield, AlertTriangle, Info, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
+import { Shield, AlertTriangle, Info, ChevronDown, ChevronUp, ExternalLink, Sparkles, Volume2, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ethers } from 'ethers';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { simplifyText, generateSpeech } from '../lib/gemini';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -16,6 +17,9 @@ interface TransactionCardProps {
 
 export const TransactionCard: React.FC<TransactionCardProps> = ({ tx }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isSimplifying, setIsSimplifying] = useState(false);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [simplifiedExplanation, setSimplifiedExplanation] = useState<string | null>(null);
 
   const getRiskColor = (level: string) => {
     switch (level) {
@@ -25,11 +29,36 @@ export const TransactionCard: React.FC<TransactionCardProps> = ({ tx }) => {
     }
   };
 
-  const getRiskIcon = (level: string) => {
-    switch (level) {
-      case 'High': return <AlertTriangle className="w-4 h-4" />;
-      case 'Medium': return <Info className="w-4 h-4" />;
-      default: return <Shield className="w-4 h-4" />;
+  const handleSimplify = async () => {
+    if (simplifiedExplanation || isSimplifying) return;
+    setIsSimplifying(true);
+    try {
+      const text = tx.aiExplanation?.explanation || "";
+      const simplified = await simplifyText(text);
+      setSimplifiedExplanation(simplified);
+    } catch (error) {
+      console.error('Simplify error:', error);
+    } finally {
+      setIsSimplifying(false);
+    }
+  };
+
+  const handleSpeak = async () => {
+    if (isSpeaking) return;
+    setIsSpeaking(true);
+    try {
+      const text = simplifiedExplanation || tx.aiExplanation?.explanation || "No explanation available.";
+      const base64 = await generateSpeech(text);
+      if (base64) {
+        const audio = new Audio(`data:audio/mp3;base64,${base64}`);
+        audio.onended = () => setIsSpeaking(false);
+        audio.play();
+      } else {
+        setIsSpeaking(false);
+      }
+    } catch (error) {
+      console.error('Speak error:', error);
+      setIsSpeaking(false);
     }
   };
 
@@ -90,12 +119,46 @@ export const TransactionCard: React.FC<TransactionCardProps> = ({ tx }) => {
             <div className="p-6 space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">
-                    <Info className="w-3 h-3" /> AI Analysis
-                  </h4>
-                  <p className="text-gray-300 leading-relaxed">
-                    {tx.aiExplanation?.explanation || "Analyzing transaction details..."}
-                  </p>
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">
+                      <Info className="w-3 h-3" /> AI Analysis
+                    </h4>
+                    <div className="flex gap-2">
+                      <button 
+                        onClick={(e) => { e.stopPropagation(); handleSimplify(); }}
+                        disabled={isSimplifying}
+                        className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-purple-400 hover:text-purple-300 transition-colors disabled:opacity-50"
+                      >
+                        {isSimplifying ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />}
+                        Simplify
+                      </button>
+                      <button 
+                        onClick={(e) => { e.stopPropagation(); handleSpeak(); }}
+                        disabled={isSpeaking}
+                        className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-blue-400 hover:text-blue-300 transition-colors disabled:opacity-50"
+                      >
+                        {isSpeaking ? <Loader2 className="w-3 h-3 animate-spin" /> : <Volume2 className="w-3 h-3" />}
+                        Listen
+                      </button>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <p className="text-gray-300 leading-relaxed">
+                      {tx.aiExplanation?.explanation || "Analyzing transaction details..."}
+                    </p>
+                    {simplifiedExplanation && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="p-4 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-200 text-sm italic"
+                      >
+                        <div className="flex items-center gap-2 mb-1 text-[10px] font-bold uppercase text-purple-400">
+                          <Sparkles className="w-3 h-3" /> Simplified
+                        </div>
+                        {simplifiedExplanation}
+                      </motion.div>
+                    )}
+                  </div>
                 </div>
                 <div className="space-y-4">
                   <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">

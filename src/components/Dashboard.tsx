@@ -3,6 +3,7 @@ import { TransactionRecord } from '../types';
 import { TransactionCard } from './TransactionCard';
 import { Wallet, RefreshCw, ShieldCheck, Zap } from 'lucide-react';
 import { motion } from 'motion/react';
+import { AIChatBot } from './AIChatBot';
 
 interface DashboardProps {
   address: string;
@@ -102,6 +103,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
           )}
         </div>
       </div>
+      <AIChatBot address={address} balance={balance} transactions={transactions} />
     </div>
   );
 };
